@@ -1,7 +1,7 @@
 package tpack
 
 import (
-	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
+	"github.com/21888/go-tagexpr-new/ameda-loc"
 )
 
 // U go underlying type data

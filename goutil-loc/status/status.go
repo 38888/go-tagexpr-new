@@ -9,7 +9,7 @@ import (
 	"io"
 	"strconv"
 
-	"github.com/21888/go-tagexpr-new/v2/goutil-loc"
+	"github.com/21888/go-tagexpr-new/goutil-loc"
 )
 
 const (
@@ -30,7 +30,8 @@ type Status struct {
 
 // New creates a handling status with code, msg and cause.
 // NOTE:
-//  code=0 means no error
+//
+//	code=0 means no error
 func New(code int32, msg string, cause ...interface{}) *Status {
 	s := &Status{
 		code: code,
@@ -44,7 +45,8 @@ func New(code int32, msg string, cause ...interface{}) *Status {
 
 // NewWithStack creates a handling status with code, msg and cause and stack.
 // NOTE:
-//  code=0 means no error
+//
+//	code=0 means no error
 func NewWithStack(code int32, msg string, cause ...interface{}) *Status {
 	return New(code, msg, cause...).TagStack(1)
 }
@@ -156,7 +158,8 @@ func (s *Status) Code() int32 {
 
 // Msg returns the status msg displayed to the user (optional).
 // NOTE:
-//  When empty, the reason is returned by default
+//
+//	When empty, the reason is returned by default
 func (s *Status) Msg() string {
 	if s == nil {
 		return ""
@@ -169,8 +172,9 @@ func (s *Status) Msg() string {
 
 // Cause returns the cause of the status for debugging (optional).
 // NOTE:
-//  If s.OK() is false, the return value is never nil;
-//  When empty, the msg is returned by default
+//
+//	If s.OK() is false, the return value is never nil;
+//	When empty, the msg is returned by default
 func (s *Status) Cause() error {
 	if s == nil {
 		return nil
@@ -224,12 +228,12 @@ func (s *Status) String() string {
 
 // Format formats the status object according to the fmt.Formatter interface.
 //
-//    %s	lists source files for each Frame in the stack
-//    %v	lists the source file and line number for each Frame in the stack
+//	%s	lists source files for each Frame in the stack
+//	%v	lists the source file and line number for each Frame in the stack
 //
 // Format accepts flags that alter the printing of some verbs, as follows:
 //
-//    %+v   Prints filename, function, and line number for each Frame in the stack.
+//	%+v   Prints filename, function, and line number for each Frame in the stack.
 func (s *Status) Format(state fmt.State, verb rune) {
 	switch verb {
 	case 'v':

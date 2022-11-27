@@ -8,7 +8,7 @@ import (
 	"math/bits"
 	"sync"
 
-	"github.com/21888/go-tagexpr-new/v2/goutil-loc"
+	"github.com/21888/go-tagexpr-new/goutil-loc"
 )
 
 // BitSet bit set

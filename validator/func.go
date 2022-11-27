@@ -7,7 +7,7 @@ import (
 
 	"github.com/nyaruka/phonenumbers"
 
-	tagexpr "github.com/21888/go-tagexpr-new/v2"
+	tagexpr "github.com/21888/go-tagexpr-new"
 )
 
 // ErrInvalidWithoutMsg verification error without error message.

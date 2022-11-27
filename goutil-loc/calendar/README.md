@@ -61,7 +61,7 @@ This package's year range is `[1900,2050]` and month range is `[1,12]`.
 ```go
 package main
 
-import "github.com/21888/go-tagexpr-new/v2/goutil/calendar"
+import "github.com/21888/go-tagexpr-new/goutil/calendar"
 import "fmt"
 
 func main() {

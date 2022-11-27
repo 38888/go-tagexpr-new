@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
+	"github.com/21888/go-tagexpr-new/ameda-loc"
 	"google.golang.org/protobuf/proto"
 )
 

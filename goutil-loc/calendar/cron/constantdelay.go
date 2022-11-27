@@ -3,7 +3,7 @@ package cron
 import (
 	"time"
 
-	"github.com/21888/go-tagexpr-new/v2/goutil-loc/calendar"
+	"github.com/21888/go-tagexpr-new/goutil-loc/calendar"
 )
 
 // ConstantDelaySchedule represents a simple recurring duty cycle, e.g. "Every 5 minutes".

@@ -21,7 +21,7 @@ import (
 	"testing"
 	"unsafe"
 
-	"github.com/21888/go-tagexpr-new/v2/binding/gjson/internal/rt"
+	"github.com/21888/go-tagexpr-new/binding/gjson/internal/rt"
 )
 
 const (

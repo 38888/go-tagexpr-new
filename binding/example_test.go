@@ -4,14 +4,14 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/21888/go-tagexpr-new/v2/goutil-loc/httpbody"
+	"github.com/21888/go-tagexpr-new/goutil-loc/httpbody"
 	"net/http"
 	"reflect"
 	"strconv"
 	"strings"
 	"time"
 
-	"github.com/21888/go-tagexpr-new/v2/binding"
+	"github.com/21888/go-tagexpr-new/binding"
 )
 
 func Example() {

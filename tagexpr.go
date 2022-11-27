@@ -18,7 +18,7 @@ package tagexpr
 import (
 	"errors"
 	"fmt"
-	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
+	"github.com/21888/go-tagexpr-new/ameda-loc"
 	"reflect"
 	"strconv"
 	"strings"

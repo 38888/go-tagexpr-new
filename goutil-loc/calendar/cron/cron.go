@@ -6,7 +6,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/21888/go-tagexpr-new/v2/goutil-loc/calendar"
+	"github.com/21888/go-tagexpr-new/goutil-loc/calendar"
 )
 
 // Cron keeps track of any number of entries, invoking the associated func as

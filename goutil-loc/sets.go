@@ -1,7 +1,7 @@
 package goutil_loc
 
 import (
-	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
+	"github.com/21888/go-tagexpr-new/ameda-loc"
 )
 
 // CopyStrings creates a copy of the string slice.

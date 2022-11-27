@@ -9,7 +9,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	time2 "github.com/21888/go-tagexpr-new/v2/ameda-loc/test/time"
+	time2 "github.com/21888/go-tagexpr-new/ameda-loc/test/time"
 )
 
 func TestCheckGoVersion(t *testing.T) {

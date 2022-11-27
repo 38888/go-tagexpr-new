@@ -2,17 +2,17 @@ package binding
 
 import (
 	jsonpkg "encoding/json"
-	"github.com/21888/go-tagexpr-new/v2"
+	"github.com/21888/go-tagexpr-new"
 	"mime/multipart"
 	"net/http"
 	"reflect"
 	"strings"
 	"sync"
 
-	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
-	"github.com/21888/go-tagexpr-new/v2/goutil-loc"
+	"github.com/21888/go-tagexpr-new/ameda-loc"
+	"github.com/21888/go-tagexpr-new/goutil-loc"
 
-	"github.com/21888/go-tagexpr-new/v2/validator"
+	"github.com/21888/go-tagexpr-new/validator"
 )
 
 // Binding binding and verification tool for http request

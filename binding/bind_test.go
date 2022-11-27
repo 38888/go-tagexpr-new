@@ -3,7 +3,7 @@ package binding_test
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/21888/go-tagexpr-new/v2/goutil-loc/httpbody"
+	"github.com/21888/go-tagexpr-new/goutil-loc/httpbody"
 	"io"
 	"io/ioutil"
 	"mime/multipart"
@@ -14,13 +14,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
+	"github.com/21888/go-tagexpr-new/ameda-loc"
 
-	vd "github.com/21888/go-tagexpr-new/v2/validator"
+	vd "github.com/21888/go-tagexpr-new/validator"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/21888/go-tagexpr-new/v2/binding"
+	"github.com/21888/go-tagexpr-new/binding"
 )
 
 func init() {

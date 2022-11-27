@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/21888/go-tagexpr-new/v2/goutil-loc"
+	"github.com/21888/go-tagexpr-new/goutil-loc"
 )
 
 // New returns an error that formats as the given text.

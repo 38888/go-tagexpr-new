@@ -5,7 +5,7 @@ Go underlying type data.
 - import it
 
     ```go
-    "github.com/21888/go-tagexpr-new/v2/goutil/tpack"
+    "github.com/21888/go-tagexpr-new/goutil/tpack"
     ```
 
 - doc

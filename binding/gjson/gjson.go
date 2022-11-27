@@ -29,13 +29,13 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
-	"github.com/21888/go-tagexpr-new/v2/goutil-loc"
+	"github.com/21888/go-tagexpr-new/ameda-loc"
+	"github.com/21888/go-tagexpr-new/goutil-loc"
 	"github.com/tidwall/gjson"
 
-	"github.com/21888/go-tagexpr-new/v2/binding"
-	"github.com/21888/go-tagexpr-new/v2/binding/gjson/internal/caching"
-	"github.com/21888/go-tagexpr-new/v2/binding/gjson/internal/rt"
+	"github.com/21888/go-tagexpr-new/binding"
+	"github.com/21888/go-tagexpr-new/binding/gjson/internal/caching"
+	"github.com/21888/go-tagexpr-new/binding/gjson/internal/rt"
 )
 
 var (

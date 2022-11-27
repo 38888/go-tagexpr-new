@@ -1,4 +1,4 @@
-module github.com/21888/go-tagexpr-new/v2
+module github.com/21888/go-tagexpr-new
 
 go 1.14
 

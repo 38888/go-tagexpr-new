@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"reflect"
 
-	"github.com/21888/go-tagexpr-new/v2"
+	"github.com/21888/go-tagexpr-new"
 )
 
 type in uint8

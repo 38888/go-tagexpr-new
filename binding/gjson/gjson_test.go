@@ -8,10 +8,10 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
+	"github.com/21888/go-tagexpr-new/ameda-loc"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/21888/go-tagexpr-new/v2/binding/gjson/internal/rt"
+	"github.com/21888/go-tagexpr-new/binding/gjson/internal/rt"
 )
 
 func TestMap(t *testing.T) {
