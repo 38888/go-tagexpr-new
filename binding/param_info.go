@@ -4,6 +4,7 @@ import (
 	jsonpkg "encoding/json"
 	"errors"
 	"fmt"
+	"github.com/21888/go-tagexpr-new/v2"
 	"mime/multipart"
 	"net/http"
 	"net/url"
@@ -11,10 +12,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/henrylee2cn/ameda"
+	"github.com/21888/go-tagexpr-new/v2/ameda"
 	"github.com/tidwall/gjson"
-
-	"github.com/bytedance/go-tagexpr/v2"
 )
 
 const (

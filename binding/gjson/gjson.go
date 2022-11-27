@@ -29,17 +29,17 @@ import (
 	"reflect"
 	"strings"
 
+	"github.com/21888/go-tagexpr-new/v2/ameda"
 	"github.com/andeya/goutil"
-	"github.com/henrylee2cn/ameda"
 	"github.com/tidwall/gjson"
 
-	"github.com/bytedance/go-tagexpr/v2/binding"
-	"github.com/bytedance/go-tagexpr/v2/binding/gjson/internal/caching"
-	"github.com/bytedance/go-tagexpr/v2/binding/gjson/internal/rt"
+	"github.com/21888/go-tagexpr-new/v2/binding"
+	"github.com/21888/go-tagexpr-new/v2/binding/gjson/internal/caching"
+	"github.com/21888/go-tagexpr-new/v2/binding/gjson/internal/rt"
 )
 
 var (
-	programCache = caching.CreateProgramCache()
+	programCache         = caching.CreateProgramCache()
 	unmarshalerInterface = reflect.TypeOf((*json.Unmarshaler)(nil)).Elem()
 )
 

@@ -22,7 +22,7 @@ package validator_test
 import (
 	"fmt"
 
-	vd "github.com/bytedance/go-tagexpr/v2/validator"
+	vd "github.com/21888/go-tagexpr-new/v2/validator"
 )
 
 func Example() {

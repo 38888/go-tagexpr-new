@@ -8,10 +8,10 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/henrylee2cn/ameda"
+	"github.com/21888/go-tagexpr-new/v2/ameda"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/bytedance/go-tagexpr/v2/binding/gjson/internal/rt"
+	"github.com/21888/go-tagexpr-new/v2/binding/gjson/internal/rt"
 )
 
 func TestMap(t *testing.T) {
@@ -236,7 +236,6 @@ func getFiledInfoWithMap(t reflect.Type) map[string][]int {
 	}
 	return sf
 }
-
 
 // MarshalJSON to output non base64 encoded []byte
 func (j ByteSlice) MarshalJSON() ([]byte, error) {

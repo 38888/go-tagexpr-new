@@ -22,7 +22,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/henrylee2cn/ameda"
+	"github.com/21888/go-tagexpr-new/v2/ameda"
 )
 
 // --------------------------- Operand ---------------------------

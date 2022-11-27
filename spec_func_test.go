@@ -18,7 +18,7 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/bytedance/go-tagexpr/v2"
+	"github.com/21888/go-tagexpr-new/v2"
 )
 
 func TestFunc(t *testing.T) {

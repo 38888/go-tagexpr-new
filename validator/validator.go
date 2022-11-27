@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//	http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,7 +22,7 @@ import (
 	"strings"
 	_ "unsafe"
 
-	tagexpr "github.com/bytedance/go-tagexpr/v2"
+	tagexpr "github.com/21888/go-tagexpr-new/v2"
 )
 
 const (
@@ -55,7 +55,8 @@ func (v *Validator) VM() *tagexpr.VM {
 
 // Validate validates whether the fields of value is valid.
 // NOTE:
-//  If checkAll=true, validate all the error.
+//
+//	If checkAll=true, validate all the error.
 func (v *Validator) Validate(value interface{}, checkAll ...bool) error {
 	var all bool
 	if len(checkAll) > 0 {
@@ -130,7 +131,8 @@ func (v *Validator) Validate(value interface{}, checkAll ...bool) error {
 
 // SetErrorFactory customizes the factory of validation error.
 // NOTE:
-//  If errFactory==nil, the default is used
+//
+//	If errFactory==nil, the default is used
 func (v *Validator) SetErrorFactory(errFactory func(failPath, msg string) error) *Validator {
 	if errFactory == nil {
 		errFactory = defaultErrorFactory

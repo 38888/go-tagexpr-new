@@ -7,7 +7,7 @@ import (
 
 	"github.com/nyaruka/phonenumbers"
 
-	tagexpr "github.com/bytedance/go-tagexpr/v2"
+	tagexpr "github.com/21888/go-tagexpr-new/v2"
 )
 
 // ErrInvalidWithoutMsg verification error without error message.
@@ -15,11 +15,12 @@ var ErrInvalidWithoutMsg = errors.New("")
 
 // MustRegFunc registers validator function expression.
 // NOTE:
-//  panic if exist error;
-//  example: phone($) or phone($,'CN');
-//  If @force=true, allow to cover the existed same @funcName;
-//  The go number types always are float64;
-//  The go string types always are string.
+//
+//	panic if exist error;
+//	example: phone($) or phone($,'CN');
+//	If @force=true, allow to cover the existed same @funcName;
+//	The go number types always are float64;
+//	The go string types always are string.
 func MustRegFunc(funcName string, fn func(args ...interface{}) error, force ...bool) {
 	err := RegFunc(funcName, fn, force...)
 	if err != nil {
@@ -29,10 +30,11 @@ func MustRegFunc(funcName string, fn func(args ...interface{}) error, force ...b
 
 // RegFunc registers validator function expression.
 // NOTE:
-//  example: phone($) or phone($,'CN');
-//  If @force=true, allow to cover the existed same @funcName;
-//  The go number types always are float64;
-//  The go string types always are string.
+//
+//	example: phone($) or phone($,'CN');
+//	If @force=true, allow to cover the existed same @funcName;
+//	The go number types always are float64;
+//	The go string types always are string.
 func RegFunc(funcName string, fn func(args ...interface{}) error, force ...bool) error {
 	return tagexpr.RegFunc(funcName, func(args ...interface{}) interface{} {
 		err := fn(args...)

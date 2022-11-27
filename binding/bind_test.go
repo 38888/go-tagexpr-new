@@ -13,14 +13,14 @@ import (
 	"testing"
 	"time"
 
-	// "github.com/bytedance/go-tagexpr/v2/binding/gjson"
+	"github.com/21888/go-tagexpr-new/v2/ameda"
+	// "github.com/21888/go-tagexpr-new/v2/binding/gjson"
 	"github.com/andeya/goutil/httpbody"
-	vd "github.com/bytedance/go-tagexpr/v2/validator"
+	vd "github.com/21888/go-tagexpr-new/v2/validator"
 	"github.com/davecgh/go-spew/spew"
-	"github.com/henrylee2cn/ameda"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/bytedance/go-tagexpr/v2/binding"
+	"github.com/21888/go-tagexpr-new/v2/binding"
 )
 
 func init() {

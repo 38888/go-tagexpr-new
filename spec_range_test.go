@@ -3,7 +3,7 @@ package tagexpr_test
 import (
 	"testing"
 
-	"github.com/bytedance/go-tagexpr/v2"
+	"github.com/21888/go-tagexpr-new/v2"
 	"github.com/stretchr/testify/assert"
 )
 
