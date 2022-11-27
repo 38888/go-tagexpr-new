@@ -21,7 +21,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/21888/go-tagexpr-new/v2/goutil/errors"
+	"github.com/21888/go-tagexpr-new/v2/goutil-loc/errors"
 )
 
 // --------------------------- Custom function ---------------------------

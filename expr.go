@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/21888/go-tagexpr-new/v2/goutil"
+	"github.com/21888/go-tagexpr-new/v2/goutil-loc"
 )
 
 // Expr expression
@@ -293,7 +293,7 @@ func (eb *exprBackground) SetRightOperand(right ExprNode) {
 
 func (*exprBackground) Run(context.Context, string, *TagExpr) interface{} { return nil }
 
-var debugSwitch = goutil.IsGoTest()
+var debugSwitch = goutil_loc.IsGoTest()
 
 func printf(format string, a ...interface{}) {
 	if debugSwitch {

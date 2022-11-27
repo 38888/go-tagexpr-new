@@ -12,7 +12,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/21888/go-tagexpr-new/v2/ameda"
+	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
 	"github.com/tidwall/gjson"
 )
 
@@ -66,7 +66,7 @@ func (p *paramInfo) bindRawBody(info *tagInfo, expr *tagexpr.TagExpr, bodyBytes 
 	if err != nil || !v.IsValid() {
 		return err
 	}
-	v = ameda.DereferenceValue(v)
+	v = ameda_loc.DereferenceValue(v)
 	switch v.Kind() {
 	case reflect.Slice:
 		if v.Type().Elem().Kind() != reflect.Uint8 {
@@ -75,7 +75,7 @@ func (p *paramInfo) bindRawBody(info *tagInfo, expr *tagexpr.TagExpr, bodyBytes 
 		v.Set(reflect.ValueOf(bodyBytes))
 		return nil
 	case reflect.String:
-		v.Set(reflect.ValueOf(ameda.UnsafeBytesToString(bodyBytes)))
+		v.Set(reflect.ValueOf(ameda_loc.UnsafeBytesToString(bodyBytes)))
 		return nil
 	default:
 		return info.typeError
@@ -188,7 +188,7 @@ func (p *paramInfo) bindFileHeaders(info *tagInfo, expr *tagexpr.TagExpr, fileHe
 	if err != nil || !v.IsValid() {
 		return true, err
 	}
-	v = ameda.DereferenceValue(v)
+	v = ameda_loc.DereferenceValue(v)
 	var elemType reflect.Type
 	isSlice := v.Kind() == reflect.Slice
 	if isSlice {
@@ -212,7 +212,7 @@ func (p *paramInfo) bindFileHeaders(info *tagInfo, expr *tagexpr.TagExpr, fileHe
 		return true, nil
 	}
 	for _, fileHeader := range r {
-		v.Set(reflect.Append(v, ameda.ReferenceValue(reflect.ValueOf(fileHeader), ptrDepth-1)))
+		v.Set(reflect.Append(v, ameda_loc.ReferenceValue(reflect.ValueOf(fileHeader), ptrDepth-1)))
 	}
 	return true, nil
 }
@@ -235,7 +235,7 @@ func (p *paramInfo) bindStringSlice(info *tagInfo, expr *tagexpr.TagExpr, a []st
 		return err
 	}
 
-	v = ameda.DereferenceValue(v)
+	v = ameda_loc.DereferenceValue(v)
 
 	// we have customized unmarshal defined, we should use it firstly
 	if fn, exist := typeUnmarshalFuncs[v.Type()]; exist {
@@ -345,7 +345,7 @@ func (p *paramInfo) bindStringSlice(info *tagInfo, expr *tagexpr.TagExpr, a []st
 			if err != nil {
 				break
 			}
-			val = reflect.Append(val, ameda.ReferenceValue(vv, ptrDepth))
+			val = reflect.Append(val, ameda_loc.ReferenceValue(vv, ptrDepth))
 		}
 		if err == nil {
 			v.Set(val)
@@ -354,7 +354,7 @@ func (p *paramInfo) bindStringSlice(info *tagInfo, expr *tagexpr.TagExpr, a []st
 		fallthrough
 	default:
 		// no customized unmarshal defined
-		err = unmarshal(ameda.UnsafeStringToBytes(a[0]), v.Addr().Interface())
+		err = unmarshal(ameda_loc.UnsafeStringToBytes(a[0]), v.Addr().Interface())
 		if err == nil {
 			return nil
 		}
@@ -381,7 +381,7 @@ func (p *paramInfo) setDefaultVal() error {
 		}
 
 		defaultVal := info.paramName
-		st := ameda.DereferenceType(p.structField.Type)
+		st := ameda_loc.DereferenceType(p.structField.Type)
 		switch st.Kind() {
 		case reflect.String:
 			p.defaultVal, _ = jsonpkg.Marshal(defaultVal)
@@ -393,7 +393,7 @@ func (p *paramInfo) setDefaultVal() error {
 			defaultVal = strings.Replace(defaultVal, `'`, `"`, -1)
 			defaultVal = strings.Replace(defaultVal, specialChar, `'`, -1)
 		}
-		p.defaultVal = ameda.UnsafeStringToBytes(defaultVal)
+		p.defaultVal = ameda_loc.UnsafeStringToBytes(defaultVal)
 	}
 	return nil
 }
@@ -415,31 +415,31 @@ func stringToValue(elemType reflect.Type, s string, emptyAsZero bool) (v reflect
 		v.SetString(s)
 	case reflect.Bool:
 		var i bool
-		i, err = ameda.StringToBool(s, emptyAsZero)
+		i, err = ameda_loc.StringToBool(s, emptyAsZero)
 		if err == nil {
 			v.SetBool(i)
 		}
 	case reflect.Float32, reflect.Float64:
 		var i float64
-		i, err = ameda.StringToFloat64(s, emptyAsZero)
+		i, err = ameda_loc.StringToFloat64(s, emptyAsZero)
 		if err == nil {
 			v.SetFloat(i)
 		}
 	case reflect.Int, reflect.Int64, reflect.Int32, reflect.Int16, reflect.Int8:
 		var i int64
-		i, err = ameda.StringToInt64(s, emptyAsZero)
+		i, err = ameda_loc.StringToInt64(s, emptyAsZero)
 		if err == nil {
 			v.SetInt(i)
 		}
 	case reflect.Uint, reflect.Uint64, reflect.Uint32, reflect.Uint16, reflect.Uint8:
 		var i uint64
-		i, err = ameda.StringToUint64(s, emptyAsZero)
+		i, err = ameda_loc.StringToUint64(s, emptyAsZero)
 		if err == nil {
 			v.SetUint(i)
 		}
 	default:
 		// no customized unmarshal defined
-		err = unmarshal(ameda.UnsafeStringToBytes(s), v.Addr().Interface())
+		err = unmarshal(ameda_loc.UnsafeStringToBytes(s), v.Addr().Interface())
 	}
 	if err != nil {
 		return reflect.Value{}, fmt.Errorf("type mismatch, error=%v", err)

@@ -18,7 +18,7 @@ package tagexpr
 import (
 	"errors"
 	"fmt"
-	"github.com/21888/go-tagexpr-new/v2/ameda"
+	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
 	"reflect"
 	"strconv"
 	"strings"
@@ -114,15 +114,15 @@ func (vm *VM) Run(structPtrOrReflectValue interface{}) (*TagExpr, error) {
 	var v reflect.Value
 	switch t := structPtrOrReflectValue.(type) {
 	case reflect.Value:
-		v = ameda.DereferenceValue(t)
+		v = ameda_loc.DereferenceValue(t)
 	default:
-		v = ameda.DereferenceValue(reflect.ValueOf(t))
+		v = ameda_loc.DereferenceValue(reflect.ValueOf(t))
 	}
 	if err := checkStructMapAddr(v); err != nil {
 		return nil, err
 	}
 
-	u := ameda.ValueFrom2(&v)
+	u := ameda_loc.ValueFrom2(&v)
 	ptr := unsafe.Pointer(u.Pointer())
 	if ptr == nil {
 		return nil, unsupportNil
@@ -174,12 +174,12 @@ func checkStructMapAddr(v reflect.Value) error {
 }
 
 func (vm *VM) subRunAll(omitNil bool, tePath string, value reflect.Value, fn func(*TagExpr, error) error) error {
-	rv := ameda.DereferenceInterfaceValue(value)
+	rv := ameda_loc.DereferenceInterfaceValue(value)
 	if !rv.IsValid() {
 		return nil
 	}
-	rt := ameda.DereferenceType(rv.Type())
-	rv = ameda.DereferenceValue(rv)
+	rt := ameda_loc.DereferenceType(rv.Type())
+	rv = ameda_loc.DereferenceValue(rv)
 	switch rt.Kind() {
 	case reflect.Struct:
 		if len(tePath) == 0 {
@@ -187,7 +187,7 @@ func (vm *VM) subRunAll(omitNil bool, tePath string, value reflect.Value, fn fun
 				return err
 			}
 		}
-		u := ameda.ValueFrom2(&rv)
+		u := ameda_loc.ValueFrom2(&rv)
 		ptr := unsafe.Pointer(u.Pointer())
 		if ptr == nil {
 			if omitNil {
@@ -202,7 +202,7 @@ func (vm *VM) subRunAll(omitNil bool, tePath string, value reflect.Value, fn fun
 		if count == 0 {
 			return nil
 		}
-		switch ameda.DereferenceType(rv.Type().Elem()).Kind() {
+		switch ameda_loc.DereferenceType(rv.Type().Elem()).Kind() {
 		case reflect.Struct, reflect.Interface, reflect.Slice, reflect.Array, reflect.Map:
 			for i := count - 1; i >= 0; i-- {
 				err := vm.subRunAll(omitNil, tePath+"["+strconv.Itoa(i)+"]", rv.Index(i), fn)
@@ -220,11 +220,11 @@ func (vm *VM) subRunAll(omitNil bool, tePath string, value reflect.Value, fn fun
 		}
 		var canKey, canValue bool
 		rt := rv.Type()
-		switch ameda.DereferenceType(rt.Key()).Kind() {
+		switch ameda_loc.DereferenceType(rt.Key()).Kind() {
 		case reflect.Struct, reflect.Interface, reflect.Slice, reflect.Array, reflect.Map:
 			canKey = true
 		}
-		switch ameda.DereferenceType(rt.Elem()).Kind() {
+		switch ameda_loc.DereferenceType(rt.Elem()).Kind() {
 		case reflect.Struct, reflect.Interface, reflect.Slice, reflect.Array, reflect.Map:
 			canValue = true
 		}
@@ -277,7 +277,7 @@ func (vm *VM) registerStructLocked(structType reflect.Type) (*structVM, error) {
 	if err != nil {
 		return nil, err
 	}
-	tid := ameda.RuntimeTypeID(structType)
+	tid := ameda_loc.RuntimeTypeID(structType)
 	s, had := vm.structJar[tid]
 	if had {
 		return s, s.err
@@ -812,7 +812,7 @@ func FakeBool(v interface{}) bool {
 		}
 		return bol
 	default:
-		vv := ameda.DereferenceValue(reflect.ValueOf(v))
+		vv := ameda_loc.DereferenceValue(reflect.ValueOf(v))
 		if vv.IsValid() || vv.IsZero() {
 			return false
 		}
@@ -911,7 +911,7 @@ func (t *TagExpr) Range(fn func(*ExprHandler) error) error {
 				keyPath := f.fieldSelector + "{k}"
 				for _, key := range v.MapKeys() {
 					if mapKeyStructVM != nil {
-						p := unsafe.Pointer(ameda.ValueFrom(derefValue(key)).Pointer())
+						p := unsafe.Pointer(ameda_loc.ValueFrom(derefValue(key)).Pointer())
 						if omitNil && p == nil {
 							continue
 						}
@@ -926,7 +926,7 @@ func (t *TagExpr) Range(fn func(*ExprHandler) error) error {
 						}
 					}
 					if mapOrSliceElemStructVM != nil {
-						p := unsafe.Pointer(ameda.ValueFrom(derefValue(v.MapIndex(key))).Pointer())
+						p := unsafe.Pointer(ameda_loc.ValueFrom(derefValue(v.MapIndex(key))).Pointer())
 						if omitNil && p == nil {
 							continue
 						}
@@ -946,7 +946,7 @@ func (t *TagExpr) Range(fn func(*ExprHandler) error) error {
 				// slice or array
 				for i := v.Len() - 1; i >= 0; i-- {
 					if mapOrSliceElemStructVM != nil {
-						p := unsafe.Pointer(ameda.ValueFrom(derefValue(v.Index(i))).Pointer())
+						p := unsafe.Pointer(ameda_loc.ValueFrom(derefValue(v.Index(i))).Pointer())
 						if omitNil && p == nil {
 							continue
 						}

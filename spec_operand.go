@@ -22,7 +22,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/21888/go-tagexpr-new/v2/ameda"
+	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
 )
 
 // --------------------------- Operand ---------------------------
@@ -195,7 +195,7 @@ func toString(i interface{}, enforce bool) (string, bool) {
 	case nil:
 		return "", false
 	default:
-		rv := ameda.DereferenceValue(reflect.ValueOf(i))
+		rv := ameda_loc.DereferenceValue(reflect.ValueOf(i))
 		if rv.Kind() == reflect.String {
 			return rv.String(), true
 		}
@@ -241,7 +241,7 @@ func toFloat64(i interface{}, tryParse bool) (float64, bool) {
 	case nil:
 		ok = false
 	default:
-		rv := ameda.DereferenceValue(reflect.ValueOf(t))
+		rv := ameda_loc.DereferenceValue(reflect.ValueOf(t))
 		switch rv.Kind() {
 		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
 			v = float64(rv.Int())
@@ -300,7 +300,7 @@ func realValue(v interface{}, boolOpposite *bool, signOpposite *bool) interface{
 			t[k] = realValue(v, boolOpposite, signOpposite)
 		}
 	default:
-		rv := ameda.DereferenceValue(reflect.ValueOf(v))
+		rv := ameda_loc.DereferenceValue(reflect.ValueOf(v))
 		switch rv.Kind() {
 		case reflect.String:
 			v = rv.String()

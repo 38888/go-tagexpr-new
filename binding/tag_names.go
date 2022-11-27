@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/21888/go-tagexpr-new/v2/goutil"
+	"github.com/21888/go-tagexpr-new/v2/goutil-loc"
 )
 
 const (
@@ -56,16 +56,16 @@ type Config struct {
 
 func (t *Config) init() {
 	t.list = []string{
-		goutil.InitAndGetString(&t.PathParam, defaultTagPath),
-		goutil.InitAndGetString(&t.Query, defaultTagQuery),
-		goutil.InitAndGetString(&t.Header, defaultTagHeader),
-		goutil.InitAndGetString(&t.Cookie, defaultTagCookie),
-		goutil.InitAndGetString(&t.RawBody, defaultTagRawbody),
-		goutil.InitAndGetString(&t.FormBody, defaultTagForm),
-		goutil.InitAndGetString(&t.Validator, defaultTagValidator),
-		goutil.InitAndGetString(&t.protobufBody, tagProtobuf),
-		goutil.InitAndGetString(&t.jsonBody, tagJSON),
-		goutil.InitAndGetString(&t.defaultVal, tagDefault),
+		goutil_loc.InitAndGetString(&t.PathParam, defaultTagPath),
+		goutil_loc.InitAndGetString(&t.Query, defaultTagQuery),
+		goutil_loc.InitAndGetString(&t.Header, defaultTagHeader),
+		goutil_loc.InitAndGetString(&t.Cookie, defaultTagCookie),
+		goutil_loc.InitAndGetString(&t.RawBody, defaultTagRawbody),
+		goutil_loc.InitAndGetString(&t.FormBody, defaultTagForm),
+		goutil_loc.InitAndGetString(&t.Validator, defaultTagValidator),
+		goutil_loc.InitAndGetString(&t.protobufBody, tagProtobuf),
+		goutil_loc.InitAndGetString(&t.jsonBody, tagJSON),
+		goutil_loc.InitAndGetString(&t.defaultVal, tagDefault),
 	}
 }
 

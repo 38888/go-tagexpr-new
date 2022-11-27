@@ -9,8 +9,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/21888/go-tagexpr-new/v2/ameda"
-	"github.com/21888/go-tagexpr-new/v2/goutil"
+	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
+	"github.com/21888/go-tagexpr-new/v2/goutil-loc"
 
 	"github.com/21888/go-tagexpr-new/v2/validator"
 )
@@ -175,7 +175,7 @@ func (b *Binding) bindStruct(structPointer interface{}, structValue reflect.Valu
 	if err != nil {
 		return
 	}
-	bodyString := ameda.UnsafeBytesToString(bodyBytes)
+	bodyString := ameda_loc.UnsafeBytesToString(bodyBytes)
 	postForm, err := req.GetPostForm()
 	if err != nil {
 		return
@@ -230,7 +230,7 @@ func (b *Binding) bindStruct(structPointer interface{}, structValue reflect.Valu
 func (b *Binding) receiverValueOf(receiver interface{}) (reflect.Value, error) {
 	v := reflect.ValueOf(receiver)
 	if v.Kind() == reflect.Ptr {
-		v = ameda.DereferencePtrValue(v)
+		v = ameda_loc.DereferencePtrValue(v)
 		if v.IsValid() && v.CanAddr() {
 			return v, nil
 		}
@@ -239,7 +239,7 @@ func (b *Binding) receiverValueOf(receiver interface{}) (reflect.Value, error) {
 }
 
 func (b *Binding) getOrPrepareReceiver(value reflect.Value) (*receiver, error) {
-	runtimeTypeID := ameda.ValueFrom(value).RuntimeTypeID()
+	runtimeTypeID := ameda_loc.ValueFrom(value).RuntimeTypeID()
 	b.lock.RLock()
 	recv, ok := b.recvs[runtimeTypeID]
 	b.lock.RUnlock()
@@ -327,7 +327,7 @@ func (b *Binding) getOrPrepareReceiver(value reflect.Value) (*receiver, error) {
 				}
 			}
 			if canDefault {
-				if !goutil.IsExportedName(p.structField.Name) {
+				if !goutil_loc.IsExportedName(p.structField.Name) {
 					canDefault = false
 				}
 			}
@@ -376,7 +376,7 @@ func (b *Binding) getOrPrepareReceiver(value reflect.Value) (*receiver, error) {
 		return nil, b.bindErrFactory(errExprSelector.String(), errMsg)
 	}
 	if !recv.hasVd {
-		recv.hasVd, _ = b.findVdTag(ameda.DereferenceType(t), false, 20, map[reflect.Type]bool{})
+		recv.hasVd, _ = b.findVdTag(ameda_loc.DereferenceType(t), false, 20, map[reflect.Type]bool{})
 	}
 	recv.initParams()
 
@@ -405,14 +405,14 @@ func (b *Binding) findVdTag(t reflect.Type, inMapOrSlice bool, depth int, exist 
 					}
 				}
 			}
-			hasVd, _ = b.findVdTag(ameda.DereferenceType(field.Type), inMapOrSlice, depth, exist)
+			hasVd, _ = b.findVdTag(ameda_loc.DereferenceType(field.Type), inMapOrSlice, depth, exist)
 			if hasVd {
 				return true, nil
 			}
 		}
 		return false, nil
 	case reflect.Slice, reflect.Array, reflect.Map:
-		return b.findVdTag(ameda.DereferenceType(t.Elem()), true, depth, exist)
+		return b.findVdTag(ameda_loc.DereferenceType(t.Elem()), true, depth, exist)
 	default:
 		return false, nil
 	}

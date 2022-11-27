@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/21888/go-tagexpr-new/v2/ameda"
+	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -34,7 +34,7 @@ func unsafeUnmarshalValue(v reflect.Value, s string, looseZeroMode bool) error {
 		}
 		return err
 	}
-	return unmarshal(ameda.UnsafeStringToBytes(s), v.Addr().Interface())
+	return unmarshal(ameda_loc.UnsafeStringToBytes(s), v.Addr().Interface())
 }
 
 func unsafeUnmarshalSlice(t reflect.Type, a []string, looseZeroMode bool) (reflect.Value, error) {
@@ -44,7 +44,7 @@ func unsafeUnmarshalSlice(t reflect.Type, a []string, looseZeroMode bool) (refle
 		fn = func(s string, _ bool) (reflect.Value, error) {
 			v := reflect.New(t)
 			i := v.Interface()
-			err = unmarshal(ameda.UnsafeStringToBytes(s), i)
+			err = unmarshal(ameda_loc.UnsafeStringToBytes(s), i)
 			return v.Elem(), err
 		}
 	}

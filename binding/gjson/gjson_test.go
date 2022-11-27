@@ -8,7 +8,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/21888/go-tagexpr-new/v2/ameda"
+	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/21888/go-tagexpr-new/v2/binding/gjson/internal/rt"
@@ -131,7 +131,7 @@ func TestAliasBUG1(t *testing.T) {
 		AttachedAndroid DeviceUUIDMap `json:"android,omitempty"`
 		AttachedIOS     DeviceUUIDMap `json:"ios,omitempty"`
 	}
-	b, err := json.MarshalIndent(ameda.InitSampleValue(reflect.TypeOf(AttachedMobiles{}), 10).Interface(), "", "  ")
+	b, err := json.MarshalIndent(ameda_loc.InitSampleValue(reflect.TypeOf(AttachedMobiles{}), 10).Interface(), "", "  ")
 	assert.NoError(t, err)
 	var r AttachedMobiles
 	err = Unmarshal(b, &r)
@@ -220,7 +220,7 @@ var fields = make(map[uintptr]map[string][]int)
 
 func getFiledInfoWithMap(t reflect.Type) map[string][]int {
 
-	runtimeTypeID := ameda.RuntimeTypeID(t)
+	runtimeTypeID := ameda_loc.RuntimeTypeID(t)
 	fieldsmu.RLock()
 	sf := fields[runtimeTypeID]
 	fieldsmu.RUnlock()

@@ -3,7 +3,7 @@ package binding_test
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/21888/go-tagexpr-new/v2/goutil/httpbody"
+	"github.com/21888/go-tagexpr-new/v2/goutil-loc/httpbody"
 	"io"
 	"io/ioutil"
 	"mime/multipart"
@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/21888/go-tagexpr-new/v2/ameda"
+	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
 
 	vd "github.com/21888/go-tagexpr-new/v2/validator"
 	"github.com/davecgh/go-spew/spew"
@@ -841,7 +841,7 @@ func TestQueryStringIssue(t *testing.T) {
 	binder.SetLooseZeroMode(true)
 	err := binder.BindAndValidate(recv, req, nil)
 	assert.NoError(t, err)
-	assert.Equal(t, ameda.StringToStringPtr("test"), recv.Name)
+	assert.Equal(t, ameda_loc.StringToStringPtr("test"), recv.Name)
 	assert.Equal(t, (*Timestamp)(nil), recv.T)
 }
 
@@ -966,7 +966,7 @@ func TestPathnameBUG(t *testing.T) {
 	}
 
 	z := &ExchangeCurrencyRequest{}
-	v := ameda.InitSampleValue(reflect.TypeOf(z), 10).Interface().(*ExchangeCurrencyRequest)
+	v := ameda_loc.InitSampleValue(reflect.TypeOf(z), 10).Interface().(*ExchangeCurrencyRequest)
 	b, err := json.MarshalIndent(v, "", "  ")
 	assert.NoError(t, err)
 	t.Log(string(b))

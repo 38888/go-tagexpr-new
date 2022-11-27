@@ -29,8 +29,8 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/21888/go-tagexpr-new/v2/ameda"
-	"github.com/21888/go-tagexpr-new/v2/goutil"
+	"github.com/21888/go-tagexpr-new/v2/ameda-loc"
+	"github.com/21888/go-tagexpr-new/v2/goutil-loc"
 	"github.com/tidwall/gjson"
 
 	"github.com/21888/go-tagexpr-new/v2/binding"
@@ -58,7 +58,7 @@ func Unmarshal(data []byte, v interface{}) error {
 	if !ok {
 		val = reflect.ValueOf(v)
 	}
-	return assign(gjson.Parse(ameda.UnsafeBytesToString(data)), val)
+	return assign(gjson.Parse(ameda_loc.UnsafeBytesToString(data)), val)
 }
 
 // assign Unmarshal
@@ -70,10 +70,10 @@ func assign(jsval gjson.Result, goval reflect.Value) (err error) {
 	switch goval.Kind() {
 	default:
 	case reflect.Ptr:
-		if !ameda.InitPointer(goval) {
+		if !ameda_loc.InitPointer(goval) {
 			return errors.New("v cannot be set")
 		}
-		newval := ameda.DereferencePtrValue(goval)
+		newval := ameda_loc.DereferencePtrValue(goval)
 		if err = assign(jsval, newval); err != nil {
 			return err
 		}
@@ -200,7 +200,7 @@ func computeTypeInfo(vtr *rt.GoType) (interface{}, error) {
 	numField := t.NumField()
 	for i := 0; i < numField; i++ {
 		f := t.Field(i)
-		if !f.Anonymous && !goutil.IsExportedName(f.Name) {
+		if !f.Anonymous && !goutil_loc.IsExportedName(f.Name) {
 			continue
 		}
 		tag := getJsonTag(f.Tag)
@@ -210,7 +210,7 @@ func computeTypeInfo(vtr *rt.GoType) (interface{}, error) {
 		if tag != "" {
 			sf[tag] = []int{i}
 		} else if f.Anonymous {
-			if findAnonymous(ameda.DereferenceType(f.Type), []int{i}, sf, 20) {
+			if findAnonymous(ameda_loc.DereferenceType(f.Type), []int{i}, sf, 20) {
 				continue
 			}
 		}
@@ -242,7 +242,7 @@ func findAnonymous(t reflect.Type, i []int, sf map[string][]int, depth int) bool
 			if subTag != "" {
 				sf[subTag] = a
 			} else if ff.Anonymous {
-				tt := ameda.DereferenceType(ff.Type)
+				tt := ameda_loc.DereferenceType(ff.Type)
 				if tt.String() == t.String() {
 					continue
 				}
@@ -277,13 +277,13 @@ func fieldByIndex(v reflect.Value, index []int) reflect.Value {
 						t = t.Elem()
 						ptrDepth++
 					}
-					v.Set(ameda.ReferenceValue(reflect.New(t), ptrDepth-1))
-					v = ameda.DereferencePtrValue(v)
+					v.Set(ameda_loc.ReferenceValue(reflect.New(t), ptrDepth-1))
+					v = ameda_loc.DereferencePtrValue(v)
 				} else {
 					return reflect.Value{}
 				}
 			} else {
-				v = ameda.DereferencePtrValue(v)
+				v = ameda_loc.DereferencePtrValue(v)
 			}
 		}
 		v = v.Field(x)
