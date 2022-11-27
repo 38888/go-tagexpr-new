@@ -3,6 +3,7 @@ package binding_test
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/21888/go-tagexpr-new/v2/goutil/httpbody"
 	"io"
 	"io/ioutil"
 	"mime/multipart"
@@ -14,8 +15,7 @@ import (
 	"time"
 
 	"github.com/21888/go-tagexpr-new/v2/ameda"
-	// "github.com/21888/go-tagexpr-new/v2/binding/gjson"
-	"github.com/andeya/goutil/httpbody"
+
 	vd "github.com/21888/go-tagexpr-new/v2/validator"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/stretchr/testify/assert"

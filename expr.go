@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/andeya/goutil"
+	"github.com/21888/go-tagexpr-new/v2/goutil"
 )
 
 // Expr expression

@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/andeya/goutil"
+	"github.com/21888/go-tagexpr-new/v2/goutil"
 )
 
 const (

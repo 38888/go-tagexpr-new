@@ -10,7 +10,7 @@ import (
 	"sync"
 
 	"github.com/21888/go-tagexpr-new/v2/ameda"
-	"github.com/andeya/goutil"
+	"github.com/21888/go-tagexpr-new/v2/goutil"
 
 	"github.com/21888/go-tagexpr-new/v2/validator"
 )

@@ -30,7 +30,7 @@ import (
 	"strings"
 
 	"github.com/21888/go-tagexpr-new/v2/ameda"
-	"github.com/andeya/goutil"
+	"github.com/21888/go-tagexpr-new/v2/goutil"
 	"github.com/tidwall/gjson"
 
 	"github.com/21888/go-tagexpr-new/v2/binding"

@@ -21,7 +21,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/andeya/goutil/errors"
+	"github.com/21888/go-tagexpr-new/v2/goutil/errors"
 )
 
 // --------------------------- Custom function ---------------------------
@@ -30,10 +30,11 @@ var funcList = map[string]func(p *Expr, expr *string) ExprNode{}
 
 // RegFunc registers function expression.
 // NOTE:
-//  example: len($), regexp("\\d") or regexp("\\d",$);
-//  If @force=true, allow to cover the existed same @funcName;
-//  The go number types always are float64;
-//  The go string types always are string.
+//
+//	example: len($), regexp("\\d") or regexp("\\d",$);
+//	If @force=true, allow to cover the existed same @funcName;
+//	The go number types always are float64;
+//	The go string types always are string.
 func RegFunc(funcName string, fn func(...interface{}) interface{}, force ...bool) error {
 	if len(force) == 0 || !force[0] {
 		_, ok := funcList[funcName]
