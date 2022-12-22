@@ -3,7 +3,7 @@ package cron
 import (
 	"time"
 
-	"github.com/21888/go-tagexpr-new/goutil-loc/calendar"
+	"github.com/38888/go-tagexpr-new/goutil-loc/calendar"
 )
 
 // SpecSchedule specifies a duty cycle (to the second granularity), based on a

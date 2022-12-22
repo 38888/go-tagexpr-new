@@ -7,7 +7,7 @@ package ameda_loc_test
 import (
 	"testing"
 
-	. "github.com/21888/go-tagexpr-new/ameda-loc"
+	. "github.com/38888/go-tagexpr-new/ameda-loc"
 )
 
 type itob64Test struct {

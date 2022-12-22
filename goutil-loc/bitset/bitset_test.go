@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/21888/go-tagexpr-new/goutil-loc/bitset"
+	"github.com/38888/go-tagexpr-new/goutil-loc/bitset"
 )
 
 func TestBitSet(t *testing.T) {

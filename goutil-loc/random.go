@@ -7,7 +7,7 @@ import (
 	"errors"
 	mrand "math/rand"
 
-	"github.com/21888/go-tagexpr-new/ameda-loc"
+	"github.com/38888/go-tagexpr-new/ameda-loc"
 )
 
 // NewRandom creates a new padded Encoding defined by the given alphabet string.

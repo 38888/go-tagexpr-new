@@ -4,7 +4,7 @@ import (
 	jsonpkg "encoding/json"
 	"errors"
 	"fmt"
-	"github.com/21888/go-tagexpr-new"
+	"github.com/38888/go-tagexpr-new"
 	"mime/multipart"
 	"net/http"
 	"net/url"
@@ -12,7 +12,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/21888/go-tagexpr-new/ameda-loc"
+	"github.com/38888/go-tagexpr-new/ameda-loc"
 	"github.com/tidwall/gjson"
 )
 

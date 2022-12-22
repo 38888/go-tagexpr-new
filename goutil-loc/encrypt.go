@@ -14,7 +14,7 @@ import (
 	"hash/fnv"
 	"io"
 
-	"github.com/21888/go-tagexpr-new/ameda-loc"
+	"github.com/38888/go-tagexpr-new/ameda-loc"
 )
 
 // Md5 returns the MD5 checksum string of the data.
